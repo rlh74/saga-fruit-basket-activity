@@ -25,7 +25,7 @@ Let's add Sagas to our React Redux fruit basket.
 
 ## Sagas Notes
 
-Sagas listen, like Reducers, for actions. Sagas will intercept actions **BEFORE** the reducer, and the action will not make it to the reducer. Sagas can do many things. Common things are dispatching other actions, and triggering HTTP calls. Usually, the end of the saga dispatches a new action that sends info to the reducer to be saved in the store.
+Sagas listen, like Reducers, for actions. Sagas will intercept actions **BEFORE** the reducer. Sagas can do many things. Common things are dispatching other actions, and triggering HTTP calls. Usually, the end of the saga dispatches a new action that sends info to the reducer to be saved in the store.
 
 ### Why Sagas?
 
