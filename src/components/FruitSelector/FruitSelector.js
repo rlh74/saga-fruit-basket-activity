@@ -11,24 +11,25 @@ class FruitSelector extends Component {
             url: '/fruit',
             data: { fruit: fruitName }
         }).then((response) => {
-            this.getFruit();
+            this.props.dispatch({type: "FETCH_FRUIT"});
+            // this.getFruit();
         }).catch((error) => {
             console.log(error);
             alert('Unable to save fruit');
         });
     }
 
-    getFruit() {
-        axios({
-            method: 'GET',
-            url: '/fruit'
-        }).then((response) => {
-            const action = { type: 'SET_BASKET', payload: response.data };
-            this.props.dispatch(action);
-        }).catch((error) => {
-            alert('Unable to get basket from server');
-        });
-    }
+    // getFruit() {
+    //     axios({
+    //         method: 'GET',
+    //         url: '/fruit'
+    //     }).then((response) => {
+    //         const action = { type: 'SET_BASKET', payload: response.data };
+    //         this.props.dispatch(action);
+    //     }).catch((error) => {
+    //         alert('Unable to get basket from server');
+    //     });
+    // }
 
     // Displays the fruit selection buttons on the DOM
     render() {

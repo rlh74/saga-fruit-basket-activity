@@ -8,24 +8,25 @@ class FruitItem extends Component {
             method: 'DELETE',
             url: `/fruit/${this.props.basketItem.id}`
         }).then((response) => {
-            this.getFruit();
+            // this.getFruit();
+            this.props.dispatch({type: "FETCH_FRUIT"});
         }).catch((error) => {
             console.log(error);
             alert('Unable to delete item');
         });  
     }
 
-    getFruit() {
-        axios({
-            method: 'GET',
-            url: '/fruit'
-        }).then((response) => {
-            const action = { type: 'SET_BASKET', payload: response.data };
-            this.props.dispatch(action);
-        }).catch((error) => {
-            alert('Unable to get basket from server');
-        });
-    }
+    // getFruit() {        
+    //     axios({
+    //         method: 'GET',
+    //         url: '/fruit'
+    //     }).then((response) => {
+    //         const action = { type: 'SET_BASKET', payload: response.data };
+    //         this.props.dispatch(action);
+    //     }).catch((error) => {
+    //         alert('Unable to get basket from server');
+    //     });
+    // }
 
     render() {
         return (
