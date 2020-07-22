@@ -4,15 +4,27 @@ import './index.css';
 import App from './components/App/App.js';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import axios from 'axios';
 // Provider allows us to use redux within our react app
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
+import {takeEvery} from 'redux-saga/effects';
 
 // Create the rootSaga generator function
 function* rootSaga() {
+    yield takeEvery('FETCH_FRUIT', getFruitSaga);
+}
 
+function* getFruitSaga(action) {
+    try {
+        // yield console.log('attempting get');
+        const response = yield axios.get('/fruit');
+        yield console.log('back with:', response.data)
+    } catch (error) {
+        console.log('error with element get request', error);
+    }
 }
 
 // Create sagaMiddleware
@@ -29,6 +41,8 @@ const basketReducer = (state = [], action) => {
             return state;
     }
 }
+
+
 
 // Create one store that all components can use
 const storeInstance = createStore(
