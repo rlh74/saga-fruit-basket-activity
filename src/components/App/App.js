@@ -3,9 +3,13 @@ import './App.css';
 import Header from '../Header/Header.js';
 import FruitList from '../FruitList/FruitList.js';
 import FruitSelector from '../FruitSelector/FruitSelector.js';
+import {connect} from 'react-redux';
 
 class App extends Component {
   // Renders the entire app on the DOM
+  componentDidMount(){
+    this.props.dispatch({type: "FETCH_FRUIT"});
+  }
   render() {
     return (
       <div className="App">
@@ -18,5 +22,8 @@ class App extends Component {
     );
   }
 }
+const mapReduxStateToProps = reduxState => ({
+  reduxState
+});
 
-export default App;
+export default connect(mapReduxStateToProps)(App);
